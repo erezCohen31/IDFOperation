@@ -9,9 +9,17 @@ namespace IDFOperation
 {
     internal class StrikeAvailability
     {
-        public static StrikeOption strikeOption(List<StrikeOption> possibilitys)
+        public static void ShowAvailableStrikes(List<StrikeOption> strikes)
         {
-            return StrikeOption;
+            Console.WriteLine("Available strikes:");
+            foreach (var strike in strikes)
+            {
+                if (strike.GetIsAvailable())
+                {
+
+                    Console.WriteLine($"Name: {strike.GetName()}, Ammunition Capacity: {strike.GetAmmunitionCapacity()}, Fuel Supply: {strike.GetFuelSupply()}");
+                }
+            }
         }
     }
 }
