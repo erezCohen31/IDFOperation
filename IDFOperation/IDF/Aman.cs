@@ -10,9 +10,21 @@ namespace IDFOperation.IDF
     {
         List<IntelligenceMessage> intelligenceMessages;
 
-        public Aman()
+        public Aman(List<IntelligenceMessage> intelligenceMessages)
         {
-            intelligenceMessages = new List<IntelligenceMessage>();
+            this.intelligenceMessages = intelligenceMessages;
+        }
+        public List<IntelligenceMessage> GetIntelligenceMessages()
+        {
+            return this.intelligenceMessages;
+        }
+        public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage)
+        {
+            this.intelligenceMessages.Add(intelligenceMessage);
+        }
+        public void RemoveInteligenceMessage(IntelligenceMessage intelligenceMessage)
+        {
+            this.intelligenceMessages.Remove(intelligenceMessage);
         }
     }
 }

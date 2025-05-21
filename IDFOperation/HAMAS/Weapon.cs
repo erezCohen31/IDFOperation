@@ -8,6 +8,14 @@ namespace IDFOperation.HAMAS
 {
     internal class Weapon
     {
-        string name;
+       private string name;
+
+        public Weapon(string name)
+        {
+            this.name = name;
+        }
+
+        public void setName(string name) { this.name = name; }
+        public string getName() { return this.name; }
     }
 }
