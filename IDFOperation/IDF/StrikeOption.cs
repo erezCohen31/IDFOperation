@@ -12,11 +12,13 @@ namespace IDFOperation.IDF
         private int ammunitionCapacity;
         private double fuelSupply;
         private List<string> typeOfTarget;
+         private bool IsAvailable;
 
         public StrikeOption(string name, double fuelSupply)
         {
             this.name = name;
             this.fuelSupply = fuelSupply;
+            IsAvailable = true;
         }
         public string GetName()
         {
@@ -62,6 +64,14 @@ namespace IDFOperation.IDF
         public void RemoveTypeOfTarget(string typeOfTarget)
         {
             this.typeOfTarget.Remove(typeOfTarget);
+        }
+        public bool GetIsAvailable()
+        {
+            return this.IsAvailable;
+        }
+        public void SetIsAvailable(bool isAvailable)
+        {
+            this.IsAvailable = isAvailable;
         }
 
 
