@@ -11,10 +11,12 @@ namespace IDFOperation.IDF
         private string bombType;
         private int strikeSimutaneity;
 
-        public M109Artillery(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType, int strikeSimutaneity) : base(name, ammunitionCapacity, fuelSupply, typeOfTarget)
+        public M109Artillery(string name, double fuelSupply, List<Target> typeOfTarget, string bombType, int strikeSimutaneity) : base(name, fuelSupply)
         {
             this.bombType = bombType;
             this.strikeSimutaneity = strikeSimutaneity;
+            AddTypeOfTarget("open area");
+            SetAmmunitionCapacity(40);
         }
         public string GetBombType()
         {

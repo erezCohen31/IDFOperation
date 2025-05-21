@@ -11,14 +11,12 @@ namespace IDFOperation.IDF
         private string name;
         private int ammunitionCapacity;
         private double fuelSupply;
-        private List<Target> typeOfTarget;
+        private List<string> typeOfTarget;
 
-        public StrikeOption(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget)
+        public StrikeOption(string name, double fuelSupply)
         {
             this.name = name;
-            this.ammunitionCapacity = ammunitionCapacity;
             this.fuelSupply = fuelSupply;
-            this.typeOfTarget = typeOfTarget;
         }
         public string GetName()
         {
@@ -36,6 +34,10 @@ namespace IDFOperation.IDF
         {
             this.ammunitionCapacity = ammunitionCapacity;
         }
+        public void RemoveOneAmmunitionCapacity()
+        {
+            this.ammunitionCapacity--;
+        }
         public double GetFuelSupply()
         {
             return this.fuelSupply;
@@ -49,17 +51,17 @@ namespace IDFOperation.IDF
             this.fuelSupply -= fuelSupply;
         }
 
-        public List<Target> GetTypeOfTarget()
+        public List<string> GetTypeOfTarget()
         {
             return this.typeOfTarget;
         }
-        public void AddTypeOfTarget(Target target)
+        public void AddTypeOfTarget(string typeOftarget)
         {
-            this.typeOfTarget.Add(target);
+            this.typeOfTarget.Add(typeOftarget);
         }
-        public void RemoveTypeOfTarget(Target target)
+        public void RemoveTypeOfTarget(string typeOfTarget)
         {
-            this.typeOfTarget.Remove(target);
+            this.typeOfTarget.Remove(typeOfTarget);
         }
 
 

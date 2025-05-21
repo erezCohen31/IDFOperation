@@ -10,9 +10,12 @@ namespace IDFOperation.IDF
     {
         private string bombType;
 
-        public Hermes460Drone(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType) : base(name, ammunitionCapacity, fuelSupply, typeOfTarget)
+        public Hermes460Drone(string name, double fuelSupply, List<Target> typeOfTarget, string bombType) : base(name, fuelSupply)
         {
             this.bombType = bombType;
+            AddTypeOfTarget("people");
+            AddTypeOfTarget("vehicle");
+            SetAmmunitionCapacity(3);
         }
         public string GetBombType()
         {

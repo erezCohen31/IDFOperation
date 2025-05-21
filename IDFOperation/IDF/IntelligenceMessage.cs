@@ -10,13 +10,13 @@ namespace IDFOperation.IDF
     internal class IntelligenceMessage
     {
         private readonly Terrorist terrorist;
-        private readonly string location;
+        private readonly Target target;
         private readonly DateTime creationTime;
 
-        public IntelligenceMessage(Terrorist terrorist, string location, DateTime creationTime)
+        public IntelligenceMessage(Terrorist terrorist, Target target, DateTime creationTime)
         {
             this.terrorist = terrorist;
-            this.location = location;
+            this.target = target;
             this.creationTime = creationTime;
         }
         public Terrorist GetTerrorist()
@@ -26,7 +26,7 @@ namespace IDFOperation.IDF
 
         public string GetLocation()
         {
-            return this.location;
+            return this.target.GetLocation();
         }
         public DateTime GetCreationTime()
         {
