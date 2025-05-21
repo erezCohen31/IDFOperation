@@ -11,10 +11,12 @@ namespace IDFOperation.IDF
         private string bombType;
         private IPilot pilot;
 
-        public F16FighterJet(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType, IPilot pilot) : base(name, ammunitionCapacity, fuelSupply, typeOfTarget)
+        public F16FighterJet(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType/*, IPilot pilot*/) : base(name, fuelSupply)
         {
             this.bombType = bombType;
-            this.pilot = pilot;
+            AddTypeOfTarget("building");
+            SetAmmunitionCapacity(8);
+            // this.pilot = pilot;
         }
 
         public string GetBombType()

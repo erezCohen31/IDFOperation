@@ -26,11 +26,11 @@ namespace IDFOperation.IDF
         {
             this.name = name;
         }
-        public string GetType()
+        public string GetTypeOfTarget()
         {
             return this.type;
         }
-        public void SetType(string type)
+        public void SetTypeOfTarget(string type)
         {
             this.type = type;
         }
