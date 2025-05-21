@@ -20,7 +20,47 @@ namespace IDFOperation.IDF
             this.fuelSupply = fuelSupply;
             this.typeOfTarget = typeOfTarget;
         }
+        public string GetName()
+        {
+            return this.name;
+        }
+        public void SetName(string name)
+        {
+            this.name = name;
+        }
+        public int GetAmmunitionCapacity()
+        {
+            return this.ammunitionCapacity;
+        }
+        public void SetAmmunitionCapacity(int ammunitionCapacity)
+        {
+            this.ammunitionCapacity = ammunitionCapacity;
+        }
+        public double GetFuelSupply()
+        {
+            return this.fuelSupply;
+        }
+        public void AddFuel(double fuelSupply)
+        {
+            this.fuelSupply += fuelSupply;
+        }
+        public void RemoveFuel(double fuelSupply)
+        {
+            this.fuelSupply -= fuelSupply;
+        }
 
+        public List<Target> GetTypeOfTarget()
+        {
+            return this.typeOfTarget;
+        }
+        public void AddTypeOfTarget(Target target)
+        {
+            this.typeOfTarget.Add(target);
+        }
+        public void RemoveTypeOfTarget(Target target)
+        {
+            this.typeOfTarget.Remove(target);
+        }
 
 
     }

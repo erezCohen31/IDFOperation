@@ -6,11 +6,19 @@ using System.Threading.Tasks;
 
 namespace IDFOperation.IDF
 {
-    internal class Hermes460Drone
+    internal class Hermes460Drone : StrikeOption
     {
         private string bombType;
 
-        public Hermes460Drone(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType)
+        public Hermes460Drone(string name, int ammunitionCapacity, double fuelSupply, List<Target> typeOfTarget, string bombType) : base(name, ammunitionCapacity, fuelSupply, typeOfTarget)
+        {
+            this.bombType = bombType;
+        }
+        public string GetBombType()
+        {
+            return this.bombType;
+        }
+        public void SetBombType(string bombType)
         {
             this.bombType = bombType;
         }
