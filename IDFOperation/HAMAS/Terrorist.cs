@@ -13,11 +13,11 @@ namespace IDFOperation.HAMAS
         private bool isAlive;
         private List<Weapon> weapons;
 
-        public Terrorist(string name, int rank, bool isAlive, List<Weapon> weapons)
+        public Terrorist(string name, int rank, List<Weapon> weapons)
         {
             this.name = name;
             this.rank = rank;
-            this.isAlive = isAlive;
+            this.isAlive = true;
             this.weapons = weapons;
         }
 

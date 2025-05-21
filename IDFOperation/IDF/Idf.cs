@@ -12,9 +12,10 @@ namespace IDFOperation.IDF
         private Commander currentCommnader;
         private List<StrikeOption> strikeOptions;
 
-        public Idf(DateTime dateOfEstablishment, Commander currentCommnader, List<StrikeOption> strikeOptions)
+        public Idf(Commander currentCommnader, List<StrikeOption> strikeOptions)
         {
-            this.dateOfEstablishment = dateOfEstablishment;
+            this.dateOfEstablishment =  new DateTime(1948, 05, 26);
+
             this.currentCommnader = currentCommnader;
             this.strikeOptions = strikeOptions;
         }
