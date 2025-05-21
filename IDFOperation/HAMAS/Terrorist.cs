@@ -8,10 +8,10 @@ namespace IDFOperation.HAMAS
 {
     internal class Terrorist
     {
-        string name;
-        int rank;
-        bool isAlive;
-        List<Weapon> weapons;
+        private string name;
+        private int rank;
+        private bool isAlive;
+        private List<Weapon> weapons;
 
         public Terrorist(string name, int rank, bool isAlive, List<Weapon> weapons)
         {
@@ -20,5 +20,17 @@ namespace IDFOperation.HAMAS
             this.isAlive = isAlive;
             this.weapons = weapons;
         }
+
+        public void setName(string name) { this.name = name; }
+        public string getName() { return this.name; }
+        public void SetRank(int rank) { this.rank = rank; }
+        public int getRank() { return this.rank; }
+        public void setIsAlive(bool isAlive) { this.isAlive = isAlive; }
+        public bool GetIsAlive() { return this.isAlive; }
+        public List<Weapon> GetWeapons() { return this.weapons; }
+        public void AddWeapons(Weapon weapon) { this.weapons.Add(weapon); }
+        public void RemoveWeapons(Weapon weapon) { this.weapons.Remove(weapon); }
+
+
     }
 }
