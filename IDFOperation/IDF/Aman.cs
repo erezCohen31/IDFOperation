@@ -9,7 +9,7 @@ namespace IDFOperation.IDF
 {
     internal class Aman
     {
-       public static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
+        private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
 
         public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
         {
@@ -60,5 +60,6 @@ namespace IDFOperation.IDF
                 $"latest location: {dangerousTerrorist.GetLocation}");
             return dangerousTerrorist;
         }
+
     }
 }

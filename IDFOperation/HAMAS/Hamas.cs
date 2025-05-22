@@ -10,12 +10,12 @@ namespace IDFOperation.HAMAS
     {
         private readonly DateTime dateOfFormation;
         private string commander;
-        List<Terrorist> terrorists;
+        private static List<Terrorist> terrorists;
 
 
-        public Hamas(List<Terrorist> terrorists)
+        public Hamas(List<Terrorist> cterrorists)
         {
-            this.terrorists = terrorists;
+            terrorists = cterrorists;
             this.commander = "sinwar";
             this.dateOfFormation = new DateTime(1987, 12, 10);
         }
@@ -34,15 +34,15 @@ namespace IDFOperation.HAMAS
         }
         public List<Terrorist> GetTerrorists()
         {
-            return this.terrorists;
+            return terrorists;
         }
         public void Addterrorist(Terrorist terrorist)
         {
-           this. terrorists.Add(terrorist);
+           terrorists.Add(terrorist);
         }
         public void RemoveTerrorist(Terrorist terrorist)
         {
-          this.terrorists.Remove(terrorist);
+          terrorists.Remove(terrorist);
         }
 
 
