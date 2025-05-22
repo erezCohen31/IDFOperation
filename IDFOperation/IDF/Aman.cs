@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IDFOperation.HAMAS;
+using IDFOperation.IDF;
 
 namespace IDFOperation.IDF
 {
@@ -40,6 +41,24 @@ namespace IDFOperation.IDF
 
         }
 
+
+
+        public Terrorist FindMostReportedTerrorist()
+        {
+            Terrorist mostReportTerrorist = null;
+            int max = 0;
+            foreach (KeyValuePair<Terrorist, List<IntelligenceMessage>> terroristAndReports in intelligenceMessagesByTerrorist)
+            {
+                if(terroristAndReports.Value.Count > max)
+                {
+                    max = terroristAndReports.Value.Count;
+                    mostReportTerrorist = terroristAndReports.Key;
+                }
+            }
+            return mostReportTerrorist;
+        }
+      
+
         public Terrorist FindTheMostDangerousTerrorist()
         {
             Terrorist dangerousTerrorist = null;
@@ -63,3 +82,5 @@ namespace IDFOperation.IDF
 
     }
 }
+
+

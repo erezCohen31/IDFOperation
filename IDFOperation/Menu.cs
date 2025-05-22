@@ -8,5 +8,7 @@ namespace IDFOperation
 {
     internal class Menu
     {
+
+        public showoMenu() { }
     }
 }

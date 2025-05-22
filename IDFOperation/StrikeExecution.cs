@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace IDFOperation
 {
-    internal class Strike_Execution
+    internal class Strike_Execution 
     {
+
     }
 }
