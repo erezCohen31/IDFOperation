@@ -48,5 +48,17 @@ namespace IDFOperation.IDF
         {
             this.strikeOptions.Remove(strikeOption);
         }
+        public  void ShowAvailableStrikes()
+        {
+            Console.WriteLine("Available strikes:");
+            foreach (var strike in strikeOptions)
+            {
+                if (strike.GetIsAvailable())
+                {
+
+                    Console.WriteLine($"Name: {strike.GetName()}, Ammunition Capacity: {strike.GetAmmunitionCapacity()}, Fuel Supply: {strike.GetFuelSupply()}");
+                }
+            }
+        }
     }
 }

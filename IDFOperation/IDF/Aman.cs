@@ -10,21 +10,21 @@ namespace IDFOperation.IDF
 {
     internal class Aman
     {
-        Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
+       public static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
 
         public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
         {
-            this.intelligenceMessagesByTerrorist = intelligenceMessagesByTerrorist;
+            intelligenceMessagesByTerrorist = intelligenceMessagesByTerrorist;
         }
         public Dictionary<Terrorist, List<IntelligenceMessage>> GetIntelligenceMessages()
         {
-            return this.intelligenceMessagesByTerrorist;
+            return intelligenceMessagesByTerrorist;
         }
         public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
-            if (this.intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+            if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
             {
-                return this.intelligenceMessagesByTerrorist[terrorist];
+                return intelligenceMessagesByTerrorist[terrorist];
             }
             else
             {
@@ -33,13 +33,14 @@ namespace IDFOperation.IDF
         }
         public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage, Terrorist terrorist)
         {
-            if (!this.intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+            if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
             {
-                this.intelligenceMessagesByTerrorist.Add(terrorist, new List<IntelligenceMessage>());
+                intelligenceMessagesByTerrorist.Add(terrorist, new List<IntelligenceMessage>());
             }
-            this.intelligenceMessagesByTerrorist[terrorist].Add(intelligenceMessage);
+            intelligenceMessagesByTerrorist[terrorist].Add(intelligenceMessage);
 
         }
+
 
 
         public Terrorist FindMostReportedTerrorist()
@@ -57,6 +58,28 @@ namespace IDFOperation.IDF
             return mostReportTerrorist;
         }
       
+
+        public Terrorist FindTheMostDangerousTerrorist()
+        {
+            Terrorist dangerousTerrorist = null;
+            int maxTerroristPoint = 0;
+            foreach (Terrorist terrorist in intelligenceMessagesByTerrorist.Keys)
+            {
+                int terroristPoint = terrorist.GetQualityRank();
+                if (terroristPoint > maxTerroristPoint)
+                {
+                    maxTerroristPoint = terroristPoint;
+                    dangerousTerrorist = terrorist;
+                }
+
+            }
+            Console.WriteLine($"name: {dangerousTerrorist.getName()}\n" +
+                $"rank: {dangerousTerrorist.getRank()}\n" +
+                $"quality score: {dangerousTerrorist.GetQualityRank()}\n" +
+                $"latest location: {dangerousTerrorist.GetLocation}");
+            return dangerousTerrorist;
+        }
+
     }
 }
 
