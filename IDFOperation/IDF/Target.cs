@@ -8,8 +8,30 @@ namespace IDFOperation.IDF
 {
     internal class Target
     {
-        string name;
-        string type;
-        string location;
+        private string type;
+        private string location;
+
+        public Target( string type, string location)
+        {
+            this.type = type;
+            this.location = location;
+        }
+      
+        public string GetTypeOfTarget()
+        {
+            return this.type;
+        }
+        public void SetTypeOfTarget(string type)
+        {
+            this.type = type;
+        }
+        public string GetLocation()
+        {
+            return this.location;
+        }
+        public void SetLocation(string location)
+        {
+            this.location = location;
+        }
     }
 }
