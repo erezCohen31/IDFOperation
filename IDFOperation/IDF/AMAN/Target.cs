@@ -20,6 +20,13 @@ namespace IDFOperation.IDF.AMAN
             this.location = location;
             this.fuelNeed = fuelNeed;
         }
+        public Target()
+        {
+            this.name = Input.GetName();
+            this.type = Input.TypeOfTarget();
+            this.location = Input.GetLocation();
+            this.fuelNeed = Input.GetFuel();
+        }
 
 
         public string GetName()

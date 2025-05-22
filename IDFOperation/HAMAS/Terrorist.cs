@@ -15,13 +15,7 @@ namespace IDFOperation.HAMAS
         private int qualityRank;
         private string latestLocation;
         private readonly int id;
-        private Dictionary<string, int> weaponDictionary = new Dictionary<string, int>()
-          {
-              { "knife", 1 },
-              { "gun", 2 },
-              { "m16", 3 },
-              {"ak47",3 }
-                                };
+      
 
         public Terrorist(string name, int rank, List<string> weaponsName, string latestLocation, int id)
         {
@@ -33,6 +27,24 @@ namespace IDFOperation.HAMAS
             int pointRank = 0;
             foreach (string weaponName in weaponsName)
             {
+                Weapon currentWeapon = new Weapon(weaponName);
+                weapons.Add(currentWeapon);
+                pointRank += currentWeapon.GetPoint();
+
+            }
+
+            qualityRank = rank * pointRank;
+        }
+        public Terrorist()
+        {
+            this.id = Input.GetId();
+            this.name = Input.GetName();
+            this.rank = Input.GetRank();
+            this.isAlive = true;
+            this.latestLocation = Input.GetLocation();
+            int pointRank = 0;
+            foreach (string weaponName in Input.GetWeaponsList())
+            {
                 Weapon currentWeapon = new Weapon(weaponName, weaponDictionary[weaponName]);
                 weapons.Add(currentWeapon);
                 pointRank += currentWeapon.GetPoint();
@@ -40,7 +52,6 @@ namespace IDFOperation.HAMAS
             }
 
             qualityRank = rank * pointRank;
-            this.id = id;
         }
 
 
