@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDFOperation.IDF
+namespace IDFOperation.IDF.PERSON
 {
     internal class Commander : Soldier
     {

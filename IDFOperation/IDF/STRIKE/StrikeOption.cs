@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDFOperation.IDF
+namespace IDFOperation.IDF.Strike
 {
     internal abstract class StrikeOption
     {
@@ -12,17 +12,20 @@ namespace IDFOperation.IDF
         private int ammunitionCapacity;
         private double fuelSupply;
         private List<string> typeOfTarget;
-         private bool IsAvailable;
+        private bool IsAvailable;
+        private string bombType;
 
-        public StrikeOption(string name, double fuelSupply)
+
+        public StrikeOption(string name, double fuelSupply,string bombType)
         {
             this.name = name;
             this.fuelSupply = fuelSupply;
+            this.bombType = bombType;
             IsAvailable = true;
         }
         public string GetName()
         {
-            return this.name;
+            return name;
         }
         public void SetName(string name)
         {
@@ -30,7 +33,7 @@ namespace IDFOperation.IDF
         }
         public int GetAmmunitionCapacity()
         {
-            return this.ammunitionCapacity;
+            return ammunitionCapacity;
         }
         public void SetAmmunitionCapacity(int ammunitionCapacity)
         {
@@ -38,11 +41,11 @@ namespace IDFOperation.IDF
         }
         public void RemoveOneAmmunitionCapacity()
         {
-            this.ammunitionCapacity--;
+            ammunitionCapacity--;
         }
         public double GetFuelSupply()
         {
-            return this.fuelSupply;
+            return fuelSupply;
         }
         public void AddFuel(double fuelSupply)
         {
@@ -52,14 +55,22 @@ namespace IDFOperation.IDF
         {
             this.fuelSupply -= fuelSupply;
         }
+        public string GetBombType()
+        {
+            return bombType;
+        }
+        public void SetBombType(string bombType)
+        {
+            this.bombType = bombType;
+        }
 
         public List<string> GetTypeOfTarget()
         {
-            return this.typeOfTarget;
+            return typeOfTarget;
         }
         public void AddTypeOfTarget(string typeOftarget)
         {
-            this.typeOfTarget.Add(typeOftarget);
+            typeOfTarget.Add(typeOftarget);
         }
         public void RemoveTypeOfTarget(string typeOfTarget)
         {
@@ -67,11 +78,11 @@ namespace IDFOperation.IDF
         }
         public bool GetIsAvailable()
         {
-            return this.IsAvailable;
+            return IsAvailable;
         }
         public void SetIsAvailable(bool isAvailable)
         {
-            this.IsAvailable = isAvailable;
+            IsAvailable = isAvailable;
         }
 
 
