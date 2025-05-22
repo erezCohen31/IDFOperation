@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IDFOperation.HAMAS;
 
-namespace IDFOperation.IDF
+namespace IDFOperation.IDF.AMAN
 {
     internal class IntelligenceMessage
     {
@@ -21,16 +21,15 @@ namespace IDFOperation.IDF
         }
         public Terrorist GetTerrorist()
         {
-            return this.terrorist;
+            return terrorist;
         }
-
         public string GetLocation()
         {
-            return this.target.GetLocation();
+            return target.GetLocation();
         }
         public DateTime GetCreationTime()
         {
-            return this.creationTime;
+            return creationTime;
         }
     }
 }

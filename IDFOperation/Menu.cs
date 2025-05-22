@@ -9,6 +9,6 @@ namespace IDFOperation
     internal class Menu
     {
 
-        public showoMenu() { }
+        public void ShowMenu() { }
     }
 }

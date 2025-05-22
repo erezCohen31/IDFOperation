@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IDFOperation.HAMAS;
-using IDFOperation.IDF;
 
-namespace IDFOperation.IDF
+namespace IDFOperation.IDF.AMAN
 {
     internal class Aman
     {
-       public static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
+        private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
 
         public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
         {
@@ -31,8 +30,21 @@ namespace IDFOperation.IDF
                 return null;
             }
         }
+        public static void KillTerrorist(Terrorist terrorist)
+        {
+            if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+            {
+                terrorist.SetIsAlive(false);
+                Console.WriteLine($"{terrorist.GetName} dead.");
+            }
+        }
         public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage, Terrorist terrorist)
         {
+            List<Terrorist> hamasList = new List<Terrorist>();
+            if (!hamasList.Contains(terrorist))
+            {
+                Hamas.Addterrorist(terrorist);
+            }
             if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
             {
                 intelligenceMessagesByTerrorist.Add(terrorist, new List<IntelligenceMessage>());
@@ -40,16 +52,13 @@ namespace IDFOperation.IDF
             intelligenceMessagesByTerrorist[terrorist].Add(intelligenceMessage);
 
         }
-
-
-
         public Terrorist FindMostReportedTerrorist()
         {
             Terrorist mostReportTerrorist = null;
             int max = 0;
             foreach (KeyValuePair<Terrorist, List<IntelligenceMessage>> terroristAndReports in intelligenceMessagesByTerrorist)
             {
-                if(terroristAndReports.Value.Count > max)
+                if (terroristAndReports.Value.Count > max)
                 {
                     max = terroristAndReports.Value.Count;
                     mostReportTerrorist = terroristAndReports.Key;
@@ -57,8 +66,6 @@ namespace IDFOperation.IDF
             }
             return mostReportTerrorist;
         }
-      
-
         public Terrorist FindTheMostDangerousTerrorist()
         {
             Terrorist dangerousTerrorist = null;
@@ -73,12 +80,17 @@ namespace IDFOperation.IDF
                 }
 
             }
-            Console.WriteLine($"name: {dangerousTerrorist.getName()}\n" +
-                $"rank: {dangerousTerrorist.getRank()}\n" +
+            Console.WriteLine($"name: {dangerousTerrorist.GetName()}\n" +
+                $"rank: {dangerousTerrorist.Getrank()}\n" +
                 $"quality score: {dangerousTerrorist.GetQualityRank()}\n" +
                 $"latest location: {dangerousTerrorist.GetLocation}");
             return dangerousTerrorist;
         }
+
+
+
+
+
 
     }
 }
