@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDFOperation.HAMAS;
+using IDFOperation.IDF.AMAN;
+using IDFOperation.IDF.PERSON;
+using IDFOperation.IDF.Strike;
 
 namespace IDFOperation.IDF
 {
@@ -14,7 +18,7 @@ namespace IDFOperation.IDF
 
         public Idf(Commander currentCommnader, List<StrikeOption> strikeOptions)
         {
-            this.dateOfEstablishment =  new DateTime(1948, 05, 26);
+            this.dateOfEstablishment = new DateTime(1948, 05, 26);
 
             this.currentCommnader = currentCommnader;
             this.strikeOptions = strikeOptions;
@@ -48,7 +52,7 @@ namespace IDFOperation.IDF
         {
             this.strikeOptions.Remove(strikeOption);
         }
-        public  void ShowAvailableStrikes()
+        public void ShowAvailableStrikes()
         {
             Console.WriteLine("Available strikes:");
             foreach (var strike in strikeOptions)
@@ -57,6 +61,31 @@ namespace IDFOperation.IDF
                 {
 
                     Console.WriteLine($"Name: {strike.GetName()}, Ammunition Capacity: {strike.GetAmmunitionCapacity()}, Fuel Supply: {strike.GetFuelSupply()}");
+                }
+            }
+        }
+
+        public void StrikeExecution(Target target, Terrorist terrorist)
+        {
+            foreach (var strike in strikeOptions)
+            {
+                if (strike.GetIsAvailable() && strike.GetTypeOfTarget().Contains(target.GetTypeOfTarget()) && strike.GetFuelSupply() < target.GetFuelNeed())
+                {
+                    strike.RemoveOneAmmunitionCapacity();
+                    strike.RemoveFuel(target.GetFuelNeed());
+                    Aman.KillTerrorist(terrorist);
+                    Console.WriteLine($"Strike executed on target {target.GetLocation()} using {strike.GetName()}\n" +
+                        $" hour: {DateTime.Now}");
+                    if (strike.GetAmmunitionCapacity() == 0 || strike.GetFuelSupply() < 200)
+                    {
+                        strike.SetIsAvailable(false);
+                        Console.WriteLine($"{strike.GetName()} is no longer available.");
+                    }
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine($"No available strike option for target {target.GetLocation()}");
                 }
             }
         }

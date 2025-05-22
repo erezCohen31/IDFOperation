@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDFOperation
+namespace IDFOperation.IDF.PERSON
 {
-    internal class Strike_Execution 
+    internal interface IPilot
     {
-
     }
 }

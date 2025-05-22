@@ -17,8 +17,8 @@ namespace IDFOperation.HAMAS
             this.point = point;
         }
 
-        public void setName(string name) { this.name = name; }
-        public string getName() { return this.name; }
-        public int getPoint() { return this.point; }
+        public void SetName(string name) { this.name = name; }
+        public string GetName() { return this.name; }
+        public int GetPoint() { return this.point; }
     }
 }

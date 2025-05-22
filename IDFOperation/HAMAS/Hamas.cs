@@ -32,11 +32,11 @@ namespace IDFOperation.HAMAS
         {
             return commander;
         }
-        public List<Terrorist> GetTerrorists()
+        public static List<Terrorist> GetTerrorists()
         {
             return terrorists;
         }
-        public void Addterrorist(Terrorist terrorist)
+        public static void Addterrorist(Terrorist terrorist)
         {
            terrorists.Add(terrorist);
         }

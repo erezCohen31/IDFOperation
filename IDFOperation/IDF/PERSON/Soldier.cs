@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IDFOperation.IDF
+namespace IDFOperation.IDF.PERSON
 {
     internal abstract class Soldier
     {
@@ -20,7 +20,7 @@ namespace IDFOperation.IDF
         }
         public string GetName()
         {
-            return this.name;
+            return name;
         }
         public void SetName(string name)
         {
@@ -28,11 +28,11 @@ namespace IDFOperation.IDF
         }
         public int GetId()
         {
-            return this.id;
+            return id;
         }
         public int GetAge()
         {
-            return this.age;
+            return age;
         }
         public void SetAge(int age)
         {
