@@ -11,15 +11,15 @@ namespace IDFOperation.IDF.AMAN
     {
         private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
 
-        public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
+        public Aman()
         {
-            intelligenceMessagesByTerrorist = intelligenceMessagesByTerrorist;
+            intelligenceMessagesByTerrorist = new Dictionary<Terrorist, List<IntelligenceMessage>>();
         }
         public Dictionary<Terrorist, List<IntelligenceMessage>> GetIntelligenceMessages()
         {
             return intelligenceMessagesByTerrorist;
         }
-        public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
+        public  List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
             if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
             {
@@ -30,14 +30,8 @@ namespace IDFOperation.IDF.AMAN
                 return null;
             }
         }
-        public static void KillTerrorist(Terrorist terrorist)
-        {
-            if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
-            {
-                terrorist.SetIsAlive(false);
-                Console.WriteLine($"{terrorist.GetName} dead.");
-            }
-        }
+       
+       
         public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage, Terrorist terrorist)
         {
             List<Terrorist> hamasList = new List<Terrorist>();
