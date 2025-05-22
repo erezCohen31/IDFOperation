@@ -38,11 +38,20 @@ namespace IDFOperation.HAMAS
         }
         public static void Addterrorist(Terrorist terrorist)
         {
-           terrorists.Add(terrorist);
+            terrorists.Add(terrorist);
         }
         public void RemoveTerrorist(Terrorist terrorist)
         {
-          terrorists.Remove(terrorist);
+            terrorists.Remove(terrorist);
+        }
+        public static bool KillTerrorist(Terrorist terrorist)
+        {
+            if (terrorists.Contains(terrorist))
+            {
+                terrorist.SetIsAlive(false);
+                Console.WriteLine($"{terrorist.GetName} dead.");
+            }
+            return true;
         }
 
 

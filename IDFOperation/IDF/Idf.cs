@@ -73,7 +73,8 @@ namespace IDFOperation.IDF
                 {
                     strike.RemoveOneAmmunitionCapacity();
                     strike.RemoveFuel(target.GetFuelNeed());
-                    Aman.KillTerrorist(terrorist);
+                    bool isKill = Hamas.KillTerrorist(terrorist);
+                    if (isKill) { }
                     Console.WriteLine($"Strike executed on target {target.GetLocation()} using {strike.GetName()}\n" +
                         $" hour: {DateTime.Now}");
                     if (strike.GetAmmunitionCapacity() == 0 || strike.GetFuelSupply() < 200)

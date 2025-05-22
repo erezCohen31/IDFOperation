@@ -6,7 +6,7 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using IDFOperation.HAMAS;
 
-namespace IDFOperation
+namespace IDFOperation.TOOLS
 {
     internal static class Input
     {

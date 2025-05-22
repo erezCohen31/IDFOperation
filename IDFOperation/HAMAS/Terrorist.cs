@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDFOperation.TOOLS;
 
 namespace IDFOperation.HAMAS
 {
@@ -45,7 +46,7 @@ namespace IDFOperation.HAMAS
             int pointRank = 0;
             foreach (string weaponName in Input.GetWeaponsList())
             {
-                Weapon currentWeapon = new Weapon(weaponName, weaponDictionary[weaponName]);
+                Weapon currentWeapon = new Weapon(weaponName);
                 weapons.Add(currentWeapon);
                 pointRank += currentWeapon.GetPoint();
 
