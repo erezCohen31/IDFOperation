@@ -18,6 +18,12 @@ namespace IDFOperation.IDF.PERSON
             this.id = id;
             this.age = age;
         }
+        public Soldier()
+        {
+            this.name = Input.GetName();
+            this.id = Input.GetId();
+            this.age = Input.GetAge();
+        }
         public string GetName()
         {
             return name;

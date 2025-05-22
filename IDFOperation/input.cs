@@ -78,7 +78,7 @@ namespace IDFOperation
 
 
         // get type of target
-        public static string TypeOfTargt()
+        public static string TypeOfTarget()
         {
             Console.WriteLine("enter type of target");
             string type = Console.ReadLine();
@@ -116,6 +116,13 @@ namespace IDFOperation
             return bombType;
         }
 
+        // get fuel 
+        public static double GetFuel()
+        {
+            Console.WriteLine("enter quantity of fuel");
+            double fuel = double.Parse(Console.ReadLine());
+            return fuel;
+        }
 
     }
 }

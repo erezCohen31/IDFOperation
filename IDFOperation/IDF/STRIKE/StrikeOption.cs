@@ -16,11 +16,18 @@ namespace IDFOperation.IDF.Strike
         private string bombType;
 
 
-        public StrikeOption(string name, double fuelSupply,string bombType)
+        public StrikeOption(string name, double fuelSupply, string bombType)
         {
             this.name = name;
             this.fuelSupply = fuelSupply;
             this.bombType = bombType;
+            IsAvailable = true;
+        }
+        public StrikeOption()
+        {
+            this.name = Input.GetName();
+            this.fuelSupply = Input.GetFuel();
+            this.bombType = Input.GetBombType();
             IsAvailable = true;
         }
         public string GetName()
