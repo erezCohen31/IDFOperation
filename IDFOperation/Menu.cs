@@ -8,5 +8,10 @@ namespace IDFOperation
 {
     internal class Menu
     {
+
+        public void showMenu()
+        {
+            Console.WriteLine("");
+        }
     }
 }

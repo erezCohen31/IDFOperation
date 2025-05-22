@@ -10,9 +10,6 @@ namespace IDFOperation
 {
     internal class IntelAnalysis
     {
-        public static Terrorist AnalysisTerrorist(List<IntelligenceMessage> intel)
-        {
-            return Terrorist;
-        }
+       
     }
 }
