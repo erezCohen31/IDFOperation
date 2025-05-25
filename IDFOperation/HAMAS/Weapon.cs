@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,26 +9,27 @@ namespace IDFOperation.HAMAS
 {
     internal class Weapon
     {
-       private string name;
+        private string name;
         private int point;
-        private Dictionary<string, int> weaponDictionary = new Dictionary<string, int>()
-          {
-              { "knife", 1 },
-              { "gun", 2 },
-              { "m16", 3 },
-              {"ak47",3 }
-                                };
+        public static readonly Dictionary<string, int> WeaponDictionary = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "knife", 1 },
+            { "gun", 2 },
+            { "m16", 3 },
+            { "ak47", 3 },
+            { "rpg", 4 },
+            { "explosive", 4 },
+            { "rifle", 3 },
+            { "pistol", 2 }
+        };
 
         public Weapon(string name)
         {
-            this.name = name;
-            this.point = weaponDictionary[name];
+            this.name = name.ToLower();
+            this.point = WeaponDictionary.ContainsKey(this.name) ? WeaponDictionary[this.name] : 1;
         }
-        public Weapon()
-        {
-            this.name = Input.GetName();
-            this.point = weaponDictionary[name];
-        }
+        
+      
 
         public void SetName(string name) { this.name = name; }
         public string GetName() { return this.name; }
