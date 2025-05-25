@@ -36,16 +36,12 @@ namespace IDFOperation
                 ProcessChoice(choice);
             }
         }
-
         private void InitializeStrikeOptions()
         {
             idf.AddStrikeOption(new F16FighterJet("F16", 1000, "Bombes"));
             idf.AddStrikeOption(new Hermes460Drone("Drone Hermes 450", 2000, "Missiles"));
             idf.AddStrikeOption(new M109Artillery("Artillerie M109", 5000, "Obus"));
         }
-
-
-
         private void ProcessChoice(string choice)
         {
             switch (choice)
@@ -74,7 +70,6 @@ namespace IDFOperation
                     break;
             }
         }
-
         private void TerroristMenu()
         {
             bool quit = false;
@@ -104,7 +99,6 @@ namespace IDFOperation
                 }
             }
         }
-
         private void IntelligenceMenu()
         {
             bool quit = false;
@@ -119,7 +113,7 @@ namespace IDFOperation
                         aman.AddIntelligenceMessage(hamas);
                         break;
                     case "2":
-                        Print.ShowMostDangerousTerrorist(aman);
+                        Print.ShowMostDangerousTerrorist(aman,hamas);
                         break;
                     case "3":
                         Print.MostReportedTerrorist(aman);
@@ -138,7 +132,6 @@ namespace IDFOperation
                 }
             }
         }
-
         private void StrikeMenu()
         {
             bool retur = false;
@@ -168,7 +161,6 @@ namespace IDFOperation
                 }
             }
         }
-
         private void TargetMenu()
         {
             bool retur = false;
@@ -199,27 +191,6 @@ namespace IDFOperation
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

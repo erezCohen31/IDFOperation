@@ -38,7 +38,7 @@ namespace IDFOperation.TOOLS
             Console.Clear();
             Console.WriteLine("=== INTELLIGENCE MANAGEMENT ===");
             Console.WriteLine("1. Add an intelligence report");
-            Console.WriteLine("2. Show most wanted terrorist");
+            Console.WriteLine("2. Show most dangerous terrorist");
             Console.WriteLine("3. Show most reported terrorist");
             Console.WriteLine("4. Back to main menu");
             Console.Write("\nYour choice (1-4) : ");
@@ -62,12 +62,12 @@ namespace IDFOperation.TOOLS
             Console.Write("\nYour choice (1-3) : ");
 
         }
-        public static void ShowMostDangerousTerrorist(Aman aman)
+        public static void ShowMostDangerousTerrorist(Aman aman,Hamas hamas)
         {
             Console.Clear();
-            Console.WriteLine("\n=== MOST WANTED TERRORIST ===\n");
+            Console.WriteLine("\n=== MOST DANGEROOUS TERRORIST ===\n");
 
-            Terrorist terrorist = aman.FindTheMostDangerousTerrorist();
+            Terrorist terrorist = aman.FindTheMostDangerousTerrorist(hamas);
             if (terrorist != null)
             {
                 Console.WriteLine($"Name: {terrorist.GetName()}");
@@ -103,7 +103,7 @@ namespace IDFOperation.TOOLS
         }
         public static void ListTerrorists(Hamas hamas)
         {
-            Print.Title("TERRORIST LIST;");
+            Print.Title("TERRORIST LIST");
 
             List<Terrorist> terrorists = hamas.GetTerrorists();
             if (terrorists == null || terrorists.Count == 0)

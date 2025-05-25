@@ -20,7 +20,6 @@ namespace IDFOperation.IDF
         public Idf(Commander currentCommander)
         {
             this.dateOfEstablishment = new DateTime(1948, 05, 26);
-
             this.currentCommander = currentCommander;
             strikeOptions = new List<StrikeOption>();
         }
@@ -56,7 +55,7 @@ namespace IDFOperation.IDF
         {
             //seacrh target
             Target target = SearchTarget(aman);
-            
+
             if (target == null)
             {
                 return;

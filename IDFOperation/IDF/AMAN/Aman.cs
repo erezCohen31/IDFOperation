@@ -147,18 +147,14 @@ namespace IDFOperation.IDF.AMAN
                 Console.WriteLine("not terrorist exist");
             }
         }
-        public Terrorist FindTheMostDangerousTerrorist()
+        public Terrorist FindTheMostDangerousTerrorist(Hamas hamas)
         {
-            if (intelligenceMessagesByTerrorist == null || intelligenceMessagesByTerrorist.Count == 0)
-            {
-                Console.WriteLine("No terrorists have been registered in the system.");
-                return null;
-            }
 
+            List<Terrorist> terrorists = hamas.GetTerrorists();
             Terrorist dangerousTerrorist = null;
             int maxTerroristPoint = 0;
 
-            foreach (Terrorist terrorist in intelligenceMessagesByTerrorist.Keys)
+            foreach (Terrorist terrorist in terrorists)
             {
                 if (terrorist != null)
                 {
@@ -171,17 +167,7 @@ namespace IDFOperation.IDF.AMAN
                 }
             }
 
-            if (dangerousTerrorist != null)
-            {
-                Console.WriteLine($"Name: {dangerousTerrorist.GetName()}");
-                Console.WriteLine($"Rank: {dangerousTerrorist.Getrank()}");
-                Console.WriteLine($"Threat level: {dangerousTerrorist.GetQualityRank()}");
-                Console.WriteLine($"Last known location: {dangerousTerrorist.GetLocation()}");
-            }
-            else
-            {
-                Console.WriteLine("No dangerous terrorist could be identified.");
-            }
+            
 
             return dangerousTerrorist;
         }
