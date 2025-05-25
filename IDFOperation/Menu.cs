@@ -4,11 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace IDFOperation
 {
     internal class Menu
     {
 
-        public void ShowMenu() { }
+        public void ShowMenu()
+        {
+            Console.WriteLine($"hello  ");
+        }
     }
 }

@@ -17,6 +17,7 @@ namespace IDFOperation.HAMAS
         private readonly int id;
       
 
+        // constractor for test
         public Terrorist(string name, int rank, List<string> weaponsName, string latestLocation, int id)
         {
             this.id = id;
@@ -35,6 +36,8 @@ namespace IDFOperation.HAMAS
 
             qualityRank = rank * pointRank;
         }
+        
+        // constractor 
         public Terrorist()
         {
             this.id = Input.GetId();
@@ -45,7 +48,7 @@ namespace IDFOperation.HAMAS
             int pointRank = 0;
             foreach (string weaponName in Input.GetWeaponsList())
             {
-                Weapon currentWeapon = new Weapon(weaponName, weaponDictionary[weaponName]);
+                Weapon currentWeapon = new Weapon(weaponName);
                 weapons.Add(currentWeapon);
                 pointRank += currentWeapon.GetPoint();
 

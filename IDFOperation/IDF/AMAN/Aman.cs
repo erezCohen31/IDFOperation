@@ -11,14 +11,22 @@ namespace IDFOperation.IDF.AMAN
     {
         private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
 
+
+        // constractor
         public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
         {
             intelligenceMessagesByTerrorist = intelligenceMessagesByTerrorist;
         }
+
+
+        // get all the message was reported
         public Dictionary<Terrorist, List<IntelligenceMessage>> GetIntelligenceMessages()
         {
             return intelligenceMessagesByTerrorist;
         }
+        
+        
+        // get info about specific terrorist
         public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
             if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
@@ -30,6 +38,9 @@ namespace IDFOperation.IDF.AMAN
                 return null;
             }
         }
+
+
+        // report about a dead terrorist 
         public static void KillTerrorist(Terrorist terrorist)
         {
             if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
@@ -38,6 +49,9 @@ namespace IDFOperation.IDF.AMAN
                 Console.WriteLine($"{terrorist.GetName} dead.");
             }
         }
+
+
+        // add report to the dictionary
         public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage, Terrorist terrorist)
         {
             List<Terrorist> hamasList = new List<Terrorist>();
@@ -52,6 +66,9 @@ namespace IDFOperation.IDF.AMAN
             intelligenceMessagesByTerrorist[terrorist].Add(intelligenceMessage);
 
         }
+
+
+        // find the most reported terrorist
         public Terrorist FindMostReportedTerrorist()
         {
             Terrorist mostReportTerrorist = null;
@@ -66,6 +83,9 @@ namespace IDFOperation.IDF.AMAN
             }
             return mostReportTerrorist;
         }
+
+
+        //find the most dangerous terrorist by 
         public Terrorist FindTheMostDangerousTerrorist()
         {
             Terrorist dangerousTerrorist = null;

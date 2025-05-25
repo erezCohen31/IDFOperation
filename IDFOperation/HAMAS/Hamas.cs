@@ -36,6 +36,8 @@ namespace IDFOperation.HAMAS
         {
             return terrorists;
         }
+
+        // 
         public static void Addterrorist(Terrorist terrorist)
         {
            terrorists.Add(terrorist);

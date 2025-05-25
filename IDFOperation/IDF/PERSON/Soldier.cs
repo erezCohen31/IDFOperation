@@ -12,12 +12,17 @@ namespace IDFOperation.IDF.PERSON
        private readonly int id;
        private int age;
 
+
+        // constractor for test
         public Soldier(string name, int id, int age)
         {
             this.name = name;
             this.id = id;
             this.age = age;
         }
+
+
+        // constractor 
         public Soldier()
         {
             this.name = Input.GetName();
