@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,38 +7,38 @@ using IDFOperation.HAMAS;
 using IDFOperation.IDF.AMAN;
 using IDFOperation.IDF.PERSON;
 using IDFOperation.IDF.Strike;
+using IDFOperation.TOOLS;
 
 namespace IDFOperation.IDF
 {
     internal class Idf
     {
         private DateTime dateOfEstablishment;
-        private Commander currentCommnader;
+        private Commander currentCommander;
         private List<StrikeOption> strikeOptions;
 
-        public Idf(Commander currentCommnader, List<StrikeOption> strikeOptions)
+        public Idf(Commander currentCommander)
         {
             this.dateOfEstablishment = new DateTime(1948, 05, 26);
 
-            this.currentCommnader = currentCommnader;
-            this.strikeOptions = strikeOptions;
+            this.currentCommander = currentCommander;
+            strikeOptions = new List<StrikeOption>();
         }
         public DateTime GetDateOfEstablishment()
         {
             return this.dateOfEstablishment;
         }
-
         public void SetDateOfEstablishment(DateTime dateOfEstablishment)
         {
             this.dateOfEstablishment = dateOfEstablishment;
         }
-        public Commander GetCurrentCommnader()
+        public Commander GetCurrentCommander()
         {
-            return this.currentCommnader;
+            return this.currentCommander;
         }
-        public void SetCurrentCommnader(Commander currentCommnader)
+        public void SetCurrentCommander(Commander currentCommander)
         {
-            this.currentCommnader = currentCommnader;
+            this.currentCommander = currentCommander;
         }
         public List<StrikeOption> GetStrikeOptions()
         {
@@ -52,43 +52,72 @@ namespace IDFOperation.IDF
         {
             this.strikeOptions.Remove(strikeOption);
         }
-        public void ShowAvailableStrikes()
+        public void StrikeExecution(Aman aman)
         {
-            Console.WriteLine("Available strikes:");
-            foreach (var strike in strikeOptions)
+            //seacrh target
+            Target target = SearchTarget(aman);
+            
+            if (target == null)
             {
-                if (strike.GetIsAvailable())
-                {
-
-                    Console.WriteLine($"Name: {strike.GetName()}, Ammunition Capacity: {strike.GetAmmunitionCapacity()}, Fuel Supply: {strike.GetFuelSupply()}");
-                }
+                return;
             }
+
+            StrikeOption suitableStrike = strikeOptions.FirstOrDefault(strike =>
+                strike.GetIsAvailable() &&
+                strike.GetTypeOfTarget().Contains(target.GetTypeOfTarget()) &&
+                strike.GetFuelSupply() >= target.GetFuelNeed());
+
+            if (suitableStrike == null)
+            {
+                Console.WriteLine($"No suitable strike option available for target at {target.GetLocation()}");
+                return;
+            }
+
+
+            Console.WriteLine($"Target: {target.GetName()} at {target.GetLocation()}");
+            Console.WriteLine($"Using: {suitableStrike.GetName()}");
+            Console.WriteLine($"Time: {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+
+            suitableStrike.RemoveOneAmmunitionCapacity();
+            suitableStrike.RemoveFuel(target.GetFuelNeed());
+            target.GetTerrorist().SetIsAlive(false);
+
+
+            Console.WriteLine($"\n Target processed: {target.GetName()}");
+
+            if (suitableStrike.GetAmmunitionCapacity() <= 0 || suitableStrike.GetFuelSupply() < 200)
+            {
+                suitableStrike.SetIsAvailable(false);
+                Console.WriteLine($"\n{suitableStrike.GetName()} is now out of service.");
+            }
+
+            Console.WriteLine($"\nStrike completed at {DateTime.Now:HH:mm:ss}");
+        }
+        public Target SearchTarget(Aman aman)
+        {
+
+            Print.Title("EXECUTE A STRIKE");
+
+            // Get existing targets
+            List<Target> targets = aman.GetTargets();
+            Print.AvailableTarget(targets);
+
+            Console.Write("\nTarget number (or 0 to cancel): ");
+            if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 0 || choice > targets.Count)
+            {
+                Console.WriteLine("Invalid selection.");
+                Console.WriteLine("\nPress any key to continue...");
+                Console.ReadKey();
+                return null;
+            }
+
+
+            if (choice == 0) return null; // User cancelled
+
+            return targets[choice - 1];
+
+
         }
 
-        public void StrikeExecution(Target target, Terrorist terrorist)
-        {
-            foreach (var strike in strikeOptions)
-            {
-                if (strike.GetIsAvailable() && strike.GetTypeOfTarget().Contains(target.GetTypeOfTarget()) && strike.GetFuelSupply() < target.GetFuelNeed())
-                {
-                    strike.RemoveOneAmmunitionCapacity();
-                    strike.RemoveFuel(target.GetFuelNeed());
-                    bool isKill = Hamas.KillTerrorist(terrorist);
-                    if (isKill) { }
-                    Console.WriteLine($"Strike executed on target {target.GetLocation()} using {strike.GetName()}\n" +
-                        $" hour: {DateTime.Now}");
-                    if (strike.GetAmmunitionCapacity() == 0 || strike.GetFuelSupply() < 200)
-                    {
-                        strike.SetIsAvailable(false);
-                        Console.WriteLine($"{strike.GetName()} is no longer available.");
-                    }
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine($"No available strike option for target {target.GetLocation()}");
-                }
-            }
-        }
     }
 }

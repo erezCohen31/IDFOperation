@@ -23,6 +23,7 @@ namespace IDFOperation.IDF.Strike
             this.fuelSupply = fuelSupply;
             this.bombType = bombType;
             IsAvailable = true;
+            typeOfTarget = new List<string>();
         }
         public StrikeOption()
         {

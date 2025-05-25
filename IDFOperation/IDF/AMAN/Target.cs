@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDFOperation.HAMAS;
 using IDFOperation.TOOLS;
 
 namespace IDFOperation.IDF.AMAN
@@ -13,22 +14,17 @@ namespace IDFOperation.IDF.AMAN
         private string type;
         private string location;
         private double fuelNeed;
+        private Terrorist terroristToKill;
 
-        public Target(string type, string location, double fuelNeed, string name)
+        public Target( string location, string name,Terrorist terrorist)
         {
             this.name = name;
-            this.type = type;
-            this.location = location;
-            this.fuelNeed = fuelNeed;
-        }
-        public Target()
-        {
-            this.name = Input.GetName();
             this.type = Input.TypeOfTarget();
-            this.location = Input.GetLocation();
+            this.location = location;
             this.fuelNeed = Input.GetFuel();
+            this.terroristToKill = terrorist;
         }
-
+     
 
         public string GetName()
         {
@@ -61,6 +57,14 @@ namespace IDFOperation.IDF.AMAN
         public void SetFuelNeed(double fuelNeed)
         {
             this.fuelNeed = fuelNeed;
+        }
+        public Terrorist GetTerrorist()
+        {
+            return terroristToKill;
+        }
+        public void SetTerrorist(Terrorist terrorist)
+        {
+            this.terroristToKill = terrorist;
         }
 
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,40 +16,31 @@ namespace IDFOperation.HAMAS
         private int qualityRank;
         private string latestLocation;
         private readonly int id;
-      
 
-        public Terrorist(string name, int rank, List<string> weaponsName, string latestLocation, int id)
-        {
-            this.id = id;
-            this.name = name;
-            this.rank = rank;
-            this.isAlive = true;
-            this.latestLocation = latestLocation;
-            int pointRank = 0;
-            foreach (string weaponName in weaponsName)
-            {
-                Weapon currentWeapon = new Weapon(weaponName);
-                weapons.Add(currentWeapon);
-                pointRank += currentWeapon.GetPoint();
 
-            }
-
-            qualityRank = rank * pointRank;
-        }
+   
         public Terrorist()
         {
-            this.id = Input.GetId();
-            this.name = Input.GetName();
+            Random rnd = new Random();
+            this.id = rnd.Next(1000, 10000); this.name = Input.GetName();
             this.rank = Input.GetRank();
             this.isAlive = true;
             this.latestLocation = Input.GetLocation();
+            this.weapons = new List<Weapon>();
             int pointRank = 0;
-            foreach (string weaponName in Input.GetWeaponsList())
-            {
-                Weapon currentWeapon = new Weapon(weaponName);
-                weapons.Add(currentWeapon);
-                pointRank += currentWeapon.GetPoint();
 
+            List<string> weaponsList = Input.GetWeaponsList();
+            if (weaponsList != null)
+            {
+                foreach (string weaponName in weaponsList)
+                {
+                    if (!string.IsNullOrEmpty(weaponName))
+                    {
+                        Weapon currentWeapon = new Weapon(weaponName);
+                        weapons.Add(currentWeapon);
+                        pointRank += currentWeapon.GetPoint();
+                    }
+                }
             }
 
             qualityRank = rank * pointRank;
