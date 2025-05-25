@@ -20,7 +20,6 @@ namespace IDFOperation.IDF
         public Idf(Commander currentCommander)
         {
             this.dateOfEstablishment = new DateTime(1948, 05, 26);
-
             this.currentCommander = currentCommander;
             strikeOptions = new List<StrikeOption>();
         }
@@ -107,19 +106,17 @@ namespace IDFOperation.IDF
             }
             Print.AvailableTarget(targets);
 
-            Console.Write("\nTarget number (or 0 to cancel): ");
-            if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 0 || choice > targets.Count)
+            Console.Write("\nTarget number : ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice < targets.Count)
             {
                 Console.WriteLine("Invalid selection.");
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadKey();
-                return null;
+                return targets[choice - 1];
+
+
             }
 
+            return null;
 
-            if (choice == 0) return null; // User cancelled
-
-            return targets[choice - 1];
 
 
         }
