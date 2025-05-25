@@ -222,8 +222,7 @@ namespace IDFOperation.TOOLS
             if (targets == null || targets.Count == 0)
             {
                 Console.WriteLine("No targets available. Please create targets first.");
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadKey();
+               
                 return;
             }
 
