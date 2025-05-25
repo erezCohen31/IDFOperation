@@ -56,7 +56,7 @@ namespace IDFOperation.IDF
         {
             //seacrh target
             Target target = SearchTarget(aman);
-            
+
             if (target == null)
             {
                 return;
@@ -100,6 +100,11 @@ namespace IDFOperation.IDF
 
             // Get existing targets
             List<Target> targets = aman.GetTargets();
+            if (targets == null || targets.Count == 0)
+            {
+                Console.WriteLine("No targets available. Please add a target first.");
+                return null;
+            }
             Print.AvailableTarget(targets);
 
             Console.Write("\nTarget number (or 0 to cancel): ");
