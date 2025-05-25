@@ -99,21 +99,24 @@ namespace IDFOperation.IDF
 
             // Get existing targets
             List<Target> targets = aman.GetTargets();
-            Print.AvailableTarget(targets);
-
-            Console.Write("\nTarget number (or 0 to cancel): ");
-            if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 0 || choice > targets.Count)
+            if (targets == null || targets.Count == 0)
             {
-                Console.WriteLine("Invalid selection.");
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadKey();
+                Console.WriteLine("No targets available. Please add a target first.");
                 return null;
             }
+            Print.AvailableTarget(targets);
+
+            Console.Write("\nTarget number : ");
+            if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice < targets.Count)
+            {
+                Console.WriteLine("Invalid selection.");
+                return targets[choice - 1];
 
 
-            if (choice == 0) return null; // User cancelled
+            }
 
-            return targets[choice - 1];
+            return null;
+
 
 
         }

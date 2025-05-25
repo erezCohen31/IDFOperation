@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IDFOperation.IDF.AMAN;
-using IDFOperation.IDF.PERSON;
-
+﻿
 namespace IDFOperation.IDF.Strike
 {
     internal class F16FighterJet : StrikeOption

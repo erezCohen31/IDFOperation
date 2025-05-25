@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using IDFOperation.HAMAS;
+﻿using IDFOperation.HAMAS;
 using IDFOperation.IDF;
 using IDFOperation.IDF.AMAN;
 using IDFOperation.IDF.Strike;
@@ -140,7 +134,7 @@ namespace IDFOperation.TOOLS
         }
         public static void MostReportedTerrorist(Aman aman)
         {
-            
+
 
             Print.Title("MOST REPORTED TERRORIST");
 
@@ -160,8 +154,6 @@ namespace IDFOperation.TOOLS
         }
         public static void StrikeOptions(Idf idf)
         {
-
-            
             Print.Title("AVAILABLE STRIKE OPTIONS");
 
             Console.WriteLine("Available strikes:");
@@ -173,7 +165,7 @@ namespace IDFOperation.TOOLS
                     Console.WriteLine($"Name: {strike.GetName()}, Ammunition Capacity: {strike.GetAmmunitionCapacity()}, Fuel Supply: {strike.GetFuelSupply()}");
                 }
             }
-         
+
         }
         public static void Title(string title)
         {
@@ -216,14 +208,12 @@ namespace IDFOperation.TOOLS
                 Console.WriteLine("----------------------------------------");
             }
         }
-
         public static void AvailableTarget(List<Target> targets)
         {
             if (targets == null || targets.Count == 0)
             {
                 Console.WriteLine("No targets available. Please create targets first.");
-                Console.WriteLine("\nPress any key to continue...");
-                Console.ReadKey();
+               
                 return;
             }
 
