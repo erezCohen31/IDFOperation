@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+
 using IDFOperation.TOOLS;
 
 namespace IDFOperation.HAMAS
@@ -21,6 +16,7 @@ namespace IDFOperation.HAMAS
 
 
 
+
         public Terrorist()
         {
             Random rnd = new Random();
@@ -31,6 +27,7 @@ namespace IDFOperation.HAMAS
             this.weapons = new List<Weapon>();
             int pointRank = 0;
             this.confidenceLevel = Input.GetConfidence();
+
 
             List<string> weaponsList = Input.GetWeaponsList();
             if (weaponsList != null)

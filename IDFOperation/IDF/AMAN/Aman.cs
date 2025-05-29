@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IDFOperation.HAMAS;
 using IDFOperation.TOOLS;
 
@@ -13,15 +8,23 @@ namespace IDFOperation.IDF.AMAN
         private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
         private static List<Target> targets;
 
+
         public Aman()
+
         {
             intelligenceMessagesByTerrorist = new Dictionary<Terrorist, List<IntelligenceMessage>>();
             targets = new List<Target>();
         }
+
+
+        // get all the message was reported
         public Dictionary<Terrorist, List<IntelligenceMessage>> GetIntelligenceMessages()
         {
             return intelligenceMessagesByTerrorist;
         }
+        
+        
+        // get info about specific terrorist
         public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
             if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
@@ -35,7 +38,11 @@ namespace IDFOperation.IDF.AMAN
         }
 
 
+
+        // report about a dead terrorist 
+
         public void AddIntelligenceMessage(Hamas hamas)
+
         {
 
             Print.Title("ADD INTELLIGENCE REPORT ");
@@ -47,7 +54,9 @@ namespace IDFOperation.IDF.AMAN
                 return;
             }
 
+
              // Display the list of terrorists
+
                 Console.WriteLine("Select a terrorist :");
                 for (int i = 0; i < terrorists.Count; i++)
                 {
@@ -102,6 +111,9 @@ namespace IDFOperation.IDF.AMAN
         {
             return new List<Target>(targets);
         }
+
+
+        // find the most reported terrorist
         public Terrorist FindMostReportedTerrorist()
         {
             Terrorist mostReportTerrorist = null;
@@ -116,7 +128,14 @@ namespace IDFOperation.IDF.AMAN
             }
             return mostReportTerrorist;
         }
+s
+
+
+        //find the most dangerous terrorist by 
+     
+
         public void CreateTarget(Hamas hamas)
+
         {
 
             Print.Title("CREATE NEW TARGET");

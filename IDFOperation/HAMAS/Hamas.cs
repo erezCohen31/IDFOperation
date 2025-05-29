@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IDFOperation.TOOLS;
 
 namespace IDFOperation.HAMAS
@@ -37,7 +32,9 @@ namespace IDFOperation.HAMAS
         {
             return terrorists;
         }
+
         public  void AddTerrorist()
+
         {
             
             Print.Title("ADD A TERRORIST");

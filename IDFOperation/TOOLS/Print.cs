@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using IDFOperation.HAMAS;
+﻿using IDFOperation.HAMAS;
 using IDFOperation.IDF;
 using IDFOperation.IDF.AMAN;
 using IDFOperation.IDF.Strike;
@@ -165,7 +159,6 @@ namespace IDFOperation.TOOLS
         }
         public static void StrikeOptions(Idf idf)
         {
-
 
             Print.Title("AVAILABLE STRIKE OPTIONS");
 

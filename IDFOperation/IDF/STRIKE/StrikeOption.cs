@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IDFOperation.TOOLS;
+﻿using IDFOperation.TOOLS;
 
 namespace IDFOperation.IDF.Strike
 {
@@ -17,6 +12,7 @@ namespace IDFOperation.IDF.Strike
         private string bombType;
 
 
+        // constractor for test
         public StrikeOption(string name, double fuelSupply, string bombType)
         {
             this.name = name;
@@ -25,6 +21,9 @@ namespace IDFOperation.IDF.Strike
             IsAvailable = true;
             typeOfTarget = new List<string>();
         }
+
+
+        // constractor
         public StrikeOption()
         {
             this.name = Input.GetName();
