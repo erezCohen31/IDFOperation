@@ -162,12 +162,13 @@ namespace IDFOperation.TOOLS
         {
             int confidenceLevel;
 
-            Console.WriteLine("enter the confidence level 1-100");
             do
             {
+                Console.WriteLine("enter the confidence level 1-100");
+
                 confidenceLevel = int.Parse(Console.ReadLine());
             }
-            while (confidenceLevel <= 100 && confidenceLevel > 0);
+            while (confidenceLevel > 100 && confidenceLevel < 0);
 
 
             return confidenceLevel;

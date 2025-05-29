@@ -22,8 +22,8 @@ namespace IDFOperation.IDF.AMAN
         {
             return intelligenceMessagesByTerrorist;
         }
-        
-        
+
+
         // get info about specific terrorist
         public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
@@ -55,49 +55,49 @@ namespace IDFOperation.IDF.AMAN
             }
 
 
-             // Display the list of terrorists
+            // Display the list of terrorists
 
-                Console.WriteLine("Select a terrorist :");
-                for (int i = 0; i < terrorists.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {terrorists[i].GetName()} (ID: {terrorists[i].GetId()})");
-                }
-
-                Console.Write("\nTerrorist number : ");
-                int index = int.Parse(Console.ReadLine()) - 1;
-
-                if (index < 0 || index >= terrorists.Count)
-                {
-                    Console.WriteLine("Invalid selection.");
-                    return;
-                }
-
-                Terrorist terrorist = terrorists[index];
-
-                IntelligenceMessage report = new IntelligenceMessage(terrorist, DateTime.Now);
-
-                // Check if the terrorist already exists in the Hamas terrorists list
-                List<Terrorist> existingTerrorists = hamas.GetTerrorists();
-                if (!existingTerrorists.Contains(terrorist))
-                {
-                    Console.WriteLine("not terrorist exist\n" +
-                        "add terrorist");
-                    return;
-                }
-
-                // Add the intelligence message for this terrorist
-                if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
-                {
-                    intelligenceMessagesByTerrorist[terrorist] = new List<IntelligenceMessage>();
-                }
-                intelligenceMessagesByTerrorist[terrorist].Add(report);
-
-                terrorist.SetLocation(report.GetLocation(), report.GetConfidence());
-
-                Console.WriteLine("\nIntelligence report added successfully!");
+            Console.WriteLine("Select a terrorist :");
+            for (int i = 0; i < terrorists.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {terrorists[i].GetName()} (ID: {terrorists[i].GetId()})");
             }
-            
-        
+
+            Console.Write("\nTerrorist number : ");
+            int index = int.Parse(Console.ReadLine()) - 1;
+
+            if (index < 0 || index >= terrorists.Count)
+            {
+                Console.WriteLine("Invalid selection.");
+                return;
+            }
+
+            Terrorist terrorist = terrorists[index];
+
+            IntelligenceMessage report = new IntelligenceMessage(terrorist, DateTime.Now);
+
+            // Check if the terrorist already exists in the Hamas terrorists list
+            List<Terrorist> existingTerrorists = hamas.GetTerrorists();
+            if (!existingTerrorists.Contains(terrorist))
+            {
+                Console.WriteLine("not terrorist exist\n" +
+                    "add terrorist");
+                return;
+            }
+
+            // Add the intelligence message for this terrorist
+            if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+            {
+                intelligenceMessagesByTerrorist[terrorist] = new List<IntelligenceMessage>();
+            }
+            intelligenceMessagesByTerrorist[terrorist].Add(report);
+
+            terrorist.SetLocation(report.GetLocation(), report.GetConfidence());
+
+            Console.WriteLine("\nIntelligence report added successfully!");
+        }
+
+
 
         public void AddTarget(Target target)
         {
@@ -132,7 +132,7 @@ namespace IDFOperation.IDF.AMAN
 
 
         //find the most dangerous terrorist by 
-     
+
 
         public void CreateTarget(Hamas hamas)
 
@@ -153,15 +153,21 @@ namespace IDFOperation.IDF.AMAN
             {
                 List<IntelligenceMessage> currentReports = this.GetIntelligenceMessagesByTerrorist(selectedTerrorist);
                 int maxConfidence = 0;
-                IntelligenceMessage currentReport = null;
-                foreach (IntelligenceMessage repport in currentReports)
+                if (currentReports==null || currentReports.Count == 0)
                 {
-                    if (maxConfidence < repport.GetConfidence())
-                    {
-                        maxConfidence = repport.GetConfidence();
-                        currentReport = repport;
-                    }
+                    Console.WriteLine("not report exist, create repor");
+                    return;
                 }
+                    IntelligenceMessage currentReport = null;
+                    foreach (IntelligenceMessage repport in currentReports)
+                    {
+                        if (maxConfidence < repport.GetConfidence())
+                        {
+                            maxConfidence = repport.GetConfidence();
+                            currentReport = repport;
+                        }
+                    }
+                
 
                 // Create target based on terrorist information
                 Target target = new Target(selectedTerrorist.GetLocation(), $"Eliminate {selectedTerrorist.GetName()}", selectedTerrorist, currentReport.GetSource());
