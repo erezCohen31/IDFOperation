@@ -10,14 +10,16 @@ namespace IDFOperation.IDF.AMAN
         private string location;
         private double fuelNeed;
         private Terrorist terroristToKill;
+        private string source;
 
-        public Target( string location, string name,Terrorist terrorist)
+        public Target( string location, string name,Terrorist terrorist,string source)
         {
             this.name = name;
             this.type = Input.TypeOfTarget();
             this.location = location;
             this.fuelNeed = Input.GetFuel();
             this.terroristToKill = terrorist;
+            this.source = source;
         }
      
 

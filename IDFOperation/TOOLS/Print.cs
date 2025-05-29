@@ -56,7 +56,7 @@ namespace IDFOperation.TOOLS
             Console.Write("\nYour choice (1-3) : ");
 
         }
-        public static void ShowMostDangerousTerrorist(Aman aman,Hamas hamas)
+        public static void ShowMostDangerousTerrorist(Aman aman, Hamas hamas)
         {
             Console.Clear();
             Console.WriteLine("\n=== MOST DANGEROOUS TERRORIST ===\n");
@@ -146,6 +146,11 @@ namespace IDFOperation.TOOLS
                 Console.WriteLine($"Number of reports: {repports?.Count ?? 0}");
                 Console.WriteLine($"Last report: {repports?[0]?.GetCreationTime()}");
                 Console.WriteLine($"Location: {terrorist.GetLocation()}");
+                foreach (IntelligenceMessage repport in repports)
+                {
+                    Console.WriteLine($"confidence level: {repport.GetConfidence}\n" +
+                        $"in {repport.GetLocation()}");
+                }
             }
             else
             {
@@ -154,6 +159,7 @@ namespace IDFOperation.TOOLS
         }
         public static void StrikeOptions(Idf idf)
         {
+
             Print.Title("AVAILABLE STRIKE OPTIONS");
 
             Console.WriteLine("Available strikes:");
@@ -198,7 +204,8 @@ namespace IDFOperation.TOOLS
                     Console.WriteLine("  Intelligence Reports:");
                     foreach (IntelligenceMessage report in reports)
                     {
-                        Console.WriteLine($"  - {report.GetCreationTime().ToShortDateString()}: {report.GetLocation()}");
+                        Console.WriteLine($"  - {report.GetCreationTime().ToShortDateString()}: {report.GetLocation()}\n" +
+                            $"confidence level: {report.GetConfidence()}");
                     }
                 }
                 else
@@ -213,7 +220,7 @@ namespace IDFOperation.TOOLS
             if (targets == null || targets.Count == 0)
             {
                 Console.WriteLine("No targets available. Please create targets first.");
-               
+
                 return;
             }
 

@@ -158,5 +158,25 @@ namespace IDFOperation.TOOLS
             return input;
         }
 
+        public static int GetConfidence()
+        {
+            int confidenceLevel;
+
+            Console.WriteLine("enter the confidence level 1-100");
+            do
+            {
+                confidenceLevel = int.Parse(Console.ReadLine());
+            }
+            while (confidenceLevel <= 100 && confidenceLevel > 0);
+
+
+            return confidenceLevel;
+
+        }
+        public static string GetSource()
+        {
+            Console.WriteLine("enter the source");
+            return Console.ReadLine();
+        }
     }
 }
