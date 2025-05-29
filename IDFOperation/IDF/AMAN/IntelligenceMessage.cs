@@ -13,14 +13,20 @@ namespace IDFOperation.IDF.AMAN
         private readonly Terrorist terrorist;
         private readonly DateTime creationTime;
         private readonly string location;
+        private int confidence;
+        string source;
 
-        public IntelligenceMessage(Terrorist terrorist,  DateTime creationTime)
+
+        public IntelligenceMessage(Terrorist terrorist, DateTime creationTime)
         {
             this.terrorist = terrorist;
             this.creationTime = creationTime;
             this.location = Input.GetLocation();
+            this.confidence = Input.GetConfidence();
+            this.source = Input.GetSource();
+
         }
-       
+
         public Terrorist GetTerrorist()
         {
             return terrorist;
@@ -32,6 +38,14 @@ namespace IDFOperation.IDF.AMAN
         public DateTime GetCreationTime()
         {
             return creationTime;
+        }
+        public int GetConfidence()
+        {
+            return confidence;
+        }
+        public string GetSource()
+        {
+            return source;
         }
     }
 }

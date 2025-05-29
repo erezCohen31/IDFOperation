@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using IDFOperation.TOOLS;
@@ -16,10 +17,11 @@ namespace IDFOperation.HAMAS
         private int qualityRank;
         private string latestLocation;
         private readonly int id;
+        private int confidenceLevel;
 
 
-   
-        public Terrorist()
+
+        public Terrorist(int confidenceLevel)
         {
             Random rnd = new Random();
             this.id = rnd.Next(1000, 10000); this.name = Input.GetName();
@@ -28,6 +30,7 @@ namespace IDFOperation.HAMAS
             this.latestLocation = Input.GetLocation();
             this.weapons = new List<Weapon>();
             int pointRank = 0;
+            this.confidenceLevel = confidenceLevel;
 
             List<string> weaponsList = Input.GetWeaponsList();
             if (weaponsList != null)
@@ -54,7 +57,14 @@ namespace IDFOperation.HAMAS
         public void SetIsAlive(bool isAlive) { this.isAlive = isAlive; }
         public bool GetIsAlive() { return this.isAlive; }
         public int GetQualityRank() { return qualityRank; }
-        public void SetLocation(string location) { this.latestLocation = location; }
+        public void SetLocation(string location, int confidenceLevel)
+        {
+            if (confidenceLevel > this.confidenceLevel)
+            {
+                this.confidenceLevel = confidenceLevel;
+                this.latestLocation = location;
+            }
+        }
         public string GetLocation() { return this.latestLocation; }
         public int GetId() { return this.id; }
         public List<Weapon> GetWeapons() { return this.weapons; }

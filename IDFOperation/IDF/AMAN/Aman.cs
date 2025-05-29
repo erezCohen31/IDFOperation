@@ -47,9 +47,7 @@ namespace IDFOperation.IDF.AMAN
                 return;
             }
 
-            try
-            {
-                // Display the list of terrorists
+             // Display the list of terrorists
                 Console.WriteLine("Select a terrorist :");
                 for (int i = 0; i < terrorists.Count; i++)
                 {
@@ -84,15 +82,13 @@ namespace IDFOperation.IDF.AMAN
                     intelligenceMessagesByTerrorist[terrorist] = new List<IntelligenceMessage>();
                 }
                 intelligenceMessagesByTerrorist[terrorist].Add(report);
-                terrorist.SetLocation(report.GetLocation());
+
+                terrorist.SetLocation(report.GetLocation(), report.GetConfidence());
 
                 Console.WriteLine("\nIntelligence report added successfully!");
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine("\nError adding report: " + ex.Message);
-            }
-        }
+            
+        
 
         public void AddTarget(Target target)
         {
@@ -136,8 +132,20 @@ namespace IDFOperation.IDF.AMAN
             Terrorist selectedTerrorist = terrorists.FirstOrDefault(t => t.GetId() == input);
             if (selectedTerrorist != null)
             {
+                List<IntelligenceMessage> currentReports = this.GetIntelligenceMessagesByTerrorist(selectedTerrorist);
+                int maxConfidence = 0;
+                IntelligenceMessage currentReport = null;
+                foreach (IntelligenceMessage repport in currentReports)
+                {
+                    if (maxConfidence < repport.GetConfidence())
+                    {
+                        maxConfidence = repport.GetConfidence();
+                        currentReport = repport;
+                    }
+                }
+
                 // Create target based on terrorist information
-                Target target = new Target(selectedTerrorist.GetLocation(), $"Eliminate {selectedTerrorist.GetName()}", selectedTerrorist);
+                Target target = new Target(selectedTerrorist.GetLocation(), $"Eliminate {selectedTerrorist.GetName()}", selectedTerrorist, currentReport.GetSource());
                 Console.WriteLine($"\nTarget created for terrorist {selectedTerrorist.GetName()} at {selectedTerrorist.GetLocation()}");
                 this.AddTarget(target);
                 Console.WriteLine($"\nTarget '{target.GetName()}' created successfully!");
@@ -167,7 +175,7 @@ namespace IDFOperation.IDF.AMAN
                 }
             }
 
-            
+
 
             return dangerousTerrorist;
         }
