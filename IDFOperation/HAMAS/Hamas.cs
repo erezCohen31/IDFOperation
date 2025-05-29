@@ -32,7 +32,9 @@ namespace IDFOperation.HAMAS
         {
             return terrorists;
         }
+
         public  void AddTerrorist()
+
         {
             
             Print.Title("ADD A TERRORIST");

@@ -13,7 +13,8 @@ namespace IDFOperation.HAMAS
         private readonly int id;
 
 
-   
+        // constractor 
+
         public Terrorist()
         {
             Random rnd = new Random();
@@ -23,6 +24,7 @@ namespace IDFOperation.HAMAS
             this.latestLocation = Input.GetLocation();
             this.weapons = new List<Weapon>();
             int pointRank = 0;
+
 
             List<string> weaponsList = Input.GetWeaponsList();
             if (weaponsList != null)

@@ -8,15 +8,23 @@ namespace IDFOperation.IDF.AMAN
         private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
         private static List<Target> targets;
 
+
         public Aman()
+
         {
             intelligenceMessagesByTerrorist = new Dictionary<Terrorist, List<IntelligenceMessage>>();
             targets = new List<Target>();
         }
+
+
+        // get all the message was reported
         public Dictionary<Terrorist, List<IntelligenceMessage>> GetIntelligenceMessages()
         {
             return intelligenceMessagesByTerrorist;
         }
+        
+        
+        // get info about specific terrorist
         public List<IntelligenceMessage> GetIntelligenceMessagesByTerrorist(Terrorist terrorist)
         {
             if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
@@ -30,7 +38,11 @@ namespace IDFOperation.IDF.AMAN
         }
 
 
+
+        // report about a dead terrorist 
+
         public void AddIntelligenceMessage(Hamas hamas)
+
         {
 
             Print.Title("ADD INTELLIGENCE REPORT ");
@@ -42,7 +54,9 @@ namespace IDFOperation.IDF.AMAN
                 return;
             }
 
+
             try
+
             {
                 // Display the list of terrorists
                 Console.WriteLine("Select a terrorist :");
@@ -101,6 +115,9 @@ namespace IDFOperation.IDF.AMAN
         {
             return new List<Target>(targets);
         }
+
+
+        // find the most reported terrorist
         public Terrorist FindMostReportedTerrorist()
         {
             Terrorist mostReportTerrorist = null;
@@ -115,7 +132,14 @@ namespace IDFOperation.IDF.AMAN
             }
             return mostReportTerrorist;
         }
+s
+
+
+        //find the most dangerous terrorist by 
+     
+
         public void CreateTarget(Hamas hamas)
+
         {
 
             Print.Title("CREATE NEW TARGET");

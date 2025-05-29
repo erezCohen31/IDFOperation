@@ -7,6 +7,7 @@ using IDFOperation.IDF.PERSON;
 using IDFOperation.IDF.Strike;
 using IDFOperation.TOOLS;
 
+
 namespace IDFOperation
 {
     internal class Menu
@@ -191,6 +192,7 @@ namespace IDFOperation
                 }
             }
         }
+
 
     }
 }

@@ -12,6 +12,7 @@ namespace IDFOperation.IDF.Strike
         private string bombType;
 
 
+        // constractor for test
         public StrikeOption(string name, double fuelSupply, string bombType)
         {
             this.name = name;
@@ -20,6 +21,9 @@ namespace IDFOperation.IDF.Strike
             IsAvailable = true;
             typeOfTarget = new List<string>();
         }
+
+
+        // constractor
         public StrikeOption()
         {
             this.name = Input.GetName();
