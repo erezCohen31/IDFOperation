@@ -128,7 +128,7 @@ namespace IDFOperation.IDF.AMAN
             }
             return mostReportTerrorist;
         }
-s
+
 
 
         //find the most dangerous terrorist by 
