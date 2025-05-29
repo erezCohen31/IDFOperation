@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using IDFOperation.TOOLS;
 
 namespace IDFOperation.HAMAS
 {
@@ -13,11 +9,11 @@ namespace IDFOperation.HAMAS
         private static List<Terrorist> terrorists;
 
 
-        public Hamas(List<Terrorist> cterrorists)
+        public Hamas()
         {
-            terrorists = cterrorists;
             this.commander = "sinwar";
             this.dateOfFormation = new DateTime(1987, 12, 10);
+            terrorists = new List<Terrorist>();
         }
 
         public DateTime GetFormation()
@@ -32,19 +28,40 @@ namespace IDFOperation.HAMAS
         {
             return commander;
         }
-        public static List<Terrorist> GetTerrorists()
+        public  List<Terrorist> GetTerrorists()
         {
             return terrorists;
         }
 
-        // 
-        public static void Addterrorist(Terrorist terrorist)
+        public  void AddTerrorist()
+
         {
-           terrorists.Add(terrorist);
+            
+            Print.Title("ADD A TERRORIST");
+
+            try
+            {
+                Terrorist terrorist = new Terrorist();
+                terrorists.Add(terrorist);
+                Console.WriteLine($"\nTerrorist added successfully! (ID: {terrorist.GetId()})!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nError adding terrorist: " + ex.Message);
+            }
         }
         public void RemoveTerrorist(Terrorist terrorist)
         {
-          terrorists.Remove(terrorist);
+            terrorists.Remove(terrorist);
+        }
+        public static bool KillTerrorist(Terrorist terrorist)
+        {
+            if (terrorists.Contains(terrorist))
+            {
+                terrorist.SetIsAlive(false);
+                Console.WriteLine($"{terrorist.GetName} dead.");
+            }
+            return true;
         }
 
 

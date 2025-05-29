@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using IDFOperation.HAMAS;
+using IDFOperation.TOOLS;
 
 namespace IDFOperation.IDF.AMAN
 {
     internal class Aman
     {
         private static Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist;
+        private static List<Target> targets;
 
 
-        // constractor
-        public Aman(Dictionary<Terrorist, List<IntelligenceMessage>> intelligenceMessagesByTerrorist)
+        public Aman()
+
         {
-            intelligenceMessagesByTerrorist = intelligenceMessagesByTerrorist;
+            intelligenceMessagesByTerrorist = new Dictionary<Terrorist, List<IntelligenceMessage>>();
+            targets = new List<Target>();
         }
 
 
@@ -40,31 +38,82 @@ namespace IDFOperation.IDF.AMAN
         }
 
 
+
         // report about a dead terrorist 
-        public static void KillTerrorist(Terrorist terrorist)
+
+        public void AddIntelligenceMessage(Hamas hamas)
+
         {
-            if (intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+
+            Print.Title("ADD INTELLIGENCE REPORT ");
+
+            List<Terrorist> terrorists = hamas.GetTerrorists();
+            if (terrorists == null || terrorists.Count == 0)
             {
-                terrorist.SetIsAlive(false);
-                Console.WriteLine($"{terrorist.GetName} dead.");
+                Console.WriteLine("No terrorists registered. Please add a terrorist first.");
+                return;
+            }
+
+
+            try
+
+            {
+                // Display the list of terrorists
+                Console.WriteLine("Select a terrorist :");
+                for (int i = 0; i < terrorists.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {terrorists[i].GetName()} (ID: {terrorists[i].GetId()})");
+                }
+
+                Console.Write("\nTerrorist number : ");
+                int index = int.Parse(Console.ReadLine()) - 1;
+
+                if (index < 0 || index >= terrorists.Count)
+                {
+                    Console.WriteLine("Invalid selection.");
+                    return;
+                }
+
+                Terrorist terrorist = terrorists[index];
+
+                IntelligenceMessage report = new IntelligenceMessage(terrorist, DateTime.Now);
+
+                // Check if the terrorist already exists in the Hamas terrorists list
+                List<Terrorist> existingTerrorists = hamas.GetTerrorists();
+                if (!existingTerrorists.Contains(terrorist))
+                {
+                    Console.WriteLine("not terrorist exist\n" +
+                        "add terrorist");
+                    return;
+                }
+
+                // Add the intelligence message for this terrorist
+                if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
+                {
+                    intelligenceMessagesByTerrorist[terrorist] = new List<IntelligenceMessage>();
+                }
+                intelligenceMessagesByTerrorist[terrorist].Add(report);
+                terrorist.SetLocation(report.GetLocation());
+
+                Console.WriteLine("\nIntelligence report added successfully!");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\nError adding report: " + ex.Message);
             }
         }
 
-
-        // add report to the dictionary
-        public void AddIntelligenceMessage(IntelligenceMessage intelligenceMessage, Terrorist terrorist)
+        public void AddTarget(Target target)
         {
-            List<Terrorist> hamasList = new List<Terrorist>();
-            if (!hamasList.Contains(terrorist))
-            {
-                Hamas.Addterrorist(terrorist);
-            }
-            if (!intelligenceMessagesByTerrorist.ContainsKey(terrorist))
-            {
-                intelligenceMessagesByTerrorist.Add(terrorist, new List<IntelligenceMessage>());
-            }
-            intelligenceMessagesByTerrorist[terrorist].Add(intelligenceMessage);
+            if (target == null)
+                throw new ArgumentNullException(nameof(target));
 
+            targets.Add(target);
+        }
+
+        public List<Target> GetTargets()
+        {
+            return new List<Target>(targets);
         }
 
 
@@ -83,27 +132,62 @@ namespace IDFOperation.IDF.AMAN
             }
             return mostReportTerrorist;
         }
+s
 
 
         //find the most dangerous terrorist by 
-        public Terrorist FindTheMostDangerousTerrorist()
+     
+
+        public void CreateTarget(Hamas hamas)
+
         {
+
+            Print.Title("CREATE NEW TARGET");
+
+            List<Terrorist> terrorists = hamas.GetTerrorists();
+
+            // Show list of terrorists with their reports
+            Print.ListTerroristAndReports(terrorists, this);
+
+
+            // Ask user to select a terrorist for the target
+            int input = Input.GetId();
+            Terrorist selectedTerrorist = terrorists.FirstOrDefault(t => t.GetId() == input);
+            if (selectedTerrorist != null)
+            {
+                // Create target based on terrorist information
+                Target target = new Target(selectedTerrorist.GetLocation(), $"Eliminate {selectedTerrorist.GetName()}", selectedTerrorist);
+                Console.WriteLine($"\nTarget created for terrorist {selectedTerrorist.GetName()} at {selectedTerrorist.GetLocation()}");
+                this.AddTarget(target);
+                Console.WriteLine($"\nTarget '{target.GetName()}' created successfully!");
+            }
+            else
+            {
+                Console.WriteLine("not terrorist exist");
+            }
+        }
+        public Terrorist FindTheMostDangerousTerrorist(Hamas hamas)
+        {
+
+            List<Terrorist> terrorists = hamas.GetTerrorists();
             Terrorist dangerousTerrorist = null;
             int maxTerroristPoint = 0;
-            foreach (Terrorist terrorist in intelligenceMessagesByTerrorist.Keys)
-            {
-                int terroristPoint = terrorist.GetQualityRank();
-                if (terroristPoint > maxTerroristPoint)
-                {
-                    maxTerroristPoint = terroristPoint;
-                    dangerousTerrorist = terrorist;
-                }
 
+            foreach (Terrorist terrorist in terrorists)
+            {
+                if (terrorist != null)
+                {
+                    int terroristPoint = terrorist.GetQualityRank();
+                    if (terroristPoint > maxTerroristPoint)
+                    {
+                        maxTerroristPoint = terroristPoint;
+                        dangerousTerrorist = terrorist;
+                    }
+                }
             }
-            Console.WriteLine($"name: {dangerousTerrorist.GetName()}\n" +
-                $"rank: {dangerousTerrorist.Getrank()}\n" +
-                $"quality score: {dangerousTerrorist.GetQualityRank()}\n" +
-                $"latest location: {dangerousTerrorist.GetLocation}");
+
+            
+
             return dangerousTerrorist;
         }
 

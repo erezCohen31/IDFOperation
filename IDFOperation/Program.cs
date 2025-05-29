@@ -1,13 +1,20 @@
-﻿using IDFOperation.HAMAS;
-using IDFOperation.IDF;
-using IDFOperation.IDF.PERSON;
-using IDFOperation.IDF.Strike;
+using System;
 
-public class program
+namespace IDFOperation
 {
-    static void Main(string[] args)
+    public class Program
     {
- 
-
+        static void Main(string[] args)
+        {
+            
+                
+                Console.WriteLine("=== IDF OPERATIONS MANAGEMENT SYSTEM ===\n");
+                
+                Menu menu = new Menu();
+                menu.Run();
+                
+            
+            
+        }
     }
 }

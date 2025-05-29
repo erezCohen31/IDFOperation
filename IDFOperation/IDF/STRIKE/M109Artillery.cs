@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IDFOperation.IDF.AMAN;
+﻿
 
 namespace IDFOperation.IDF.Strike
 {
@@ -11,7 +6,7 @@ namespace IDFOperation.IDF.Strike
     {
         private int strikeSimutaneity;
 
-        public M109Artillery(string name, double fuelSupply, List<Target> typeOfTarget, string bombType) : base(name, fuelSupply,bombType)
+        public M109Artillery(string name, double fuelSupply , string bombType) : base(name, fuelSupply,bombType)
         {
             
             this.strikeSimutaneity = 3;

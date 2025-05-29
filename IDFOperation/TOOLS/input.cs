@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using IDFOperation.HAMAS;
+﻿using IDFOperation.HAMAS;
 
-namespace IDFOperation
+namespace IDFOperation.TOOLS
 {
     internal static class Input
     {
-    // for Terrorist
-     
+        // for Terrorist
+
 
         // get name 
         static public string GetName()
@@ -19,7 +13,7 @@ namespace IDFOperation
             Console.WriteLine("enter the name");
             string name = Console.ReadLine();
             return name;
-        } 
+        }
 
 
         // get Rank  
@@ -34,11 +28,45 @@ namespace IDFOperation
         // get weapons
         public static List<string> GetWeaponsList()
         {
-            Console.WriteLine("enter weapons");
-            string[] weapons = Console.ReadLine().Split();
-            List<string> weaponList = weapons.ToList();
-            
-            return weaponList;
+            List<string> currentWeapons = new List<string>();
+
+            Console.WriteLine("\nAdd weapons (select number or type 'end' to finish):");
+
+            while (true)
+            {
+                // Display available weapons
+                Console.WriteLine("\nAvailable weapons:");
+                int i = 1;
+                foreach (KeyValuePair<string, int> weapon in Weapon.WeaponDictionary)
+                {
+                    Console.WriteLine($"{i++}. {weapon.Key} (Danger: {weapon.Value})");
+                }
+
+                Console.Write("\nSelect weapon (number) or type 'end': ");
+                string input = Console.ReadLine().ToLower();
+
+                if (input == "end")
+                    break;
+
+                if (int.TryParse(input, out int weaponIndex))
+                {
+                    if (weaponIndex > 0 && weaponIndex <= Weapon.WeaponDictionary.Count)
+                    {
+                        string selectedWeapon = Weapon.WeaponDictionary.Keys.ElementAt(weaponIndex - 1);
+                        currentWeapons.Add(selectedWeapon);
+                        Console.WriteLine($"Added: {selectedWeapon} (Danger: {Weapon.WeaponDictionary[selectedWeapon]})");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid selection. Please try again.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number or 'end'.");
+                }
+            }
+            return currentWeapons;
         }
 
 
@@ -52,7 +80,7 @@ namespace IDFOperation
 
 
 
-    // for Weapon
+        // for Weapon
 
 
         // create weapon - name
@@ -71,10 +99,10 @@ namespace IDFOperation
             int level = int.Parse(Console.ReadLine());
             return level;
         }
-        
 
 
-    //  for Target
+
+        //  for Target
 
 
         // get type of target
@@ -86,9 +114,9 @@ namespace IDFOperation
         }
 
 
-    //  for Soldier
-     
-        
+        //  for Soldier
+
+
         // get age
         public static int GetAge()
         {
@@ -108,8 +136,8 @@ namespace IDFOperation
 
 
 
-    // for StrikeOption
-    public static string GetBombType()
+        // for StrikeOption
+        public static string GetBombType()
         {
             Console.WriteLine("enter bomb type");
             string bombType = Console.ReadLine();
@@ -122,6 +150,12 @@ namespace IDFOperation
             Console.WriteLine("enter quantity of fuel");
             double fuel = double.Parse(Console.ReadLine());
             return fuel;
+        }
+        public static string GetIdToSearch()
+        {
+            Console.Write("\nEnter the ID of the terrorist to target (or press Enter to create a generic target): ");
+            string input = Console.ReadLine();
+            return input;
         }
 
     }

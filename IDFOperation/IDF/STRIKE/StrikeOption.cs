@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IDFOperation.TOOLS;
 
 namespace IDFOperation.IDF.Strike
 {
@@ -23,6 +19,7 @@ namespace IDFOperation.IDF.Strike
             this.fuelSupply = fuelSupply;
             this.bombType = bombType;
             IsAvailable = true;
+            typeOfTarget = new List<string>();
         }
 
 
