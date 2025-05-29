@@ -21,7 +21,7 @@ namespace IDFOperation.HAMAS
 
 
 
-        public Terrorist(int confidenceLevel)
+        public Terrorist()
         {
             Random rnd = new Random();
             this.id = rnd.Next(1000, 10000); this.name = Input.GetName();
@@ -30,7 +30,7 @@ namespace IDFOperation.HAMAS
             this.latestLocation = Input.GetLocation();
             this.weapons = new List<Weapon>();
             int pointRank = 0;
-            this.confidenceLevel = confidenceLevel;
+            this.confidenceLevel = Input.GetConfidence();
 
             List<string> weaponsList = Input.GetWeaponsList();
             if (weaponsList != null)

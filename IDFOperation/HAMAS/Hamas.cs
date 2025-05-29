@@ -44,7 +44,7 @@ namespace IDFOperation.HAMAS
 
             try
             {
-                Terrorist terrorist = new Terrorist(0);
+                Terrorist terrorist = new Terrorist();
                 terrorists.Add(terrorist);
                 Console.WriteLine($"\nTerrorist added successfully! (ID: {terrorist.GetId()})!");
             }
